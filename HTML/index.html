@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>翻訳システム</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <h2>翻訳システム</h2>
+         <div class="translate">
+         <label>翻訳元の言語:
+         <select name="country" id="base_country">
+            <option value="日本語">日本語</option>
+            <option value="英語">英語</option>
+            <option value="フランス語">フランス語</option>
+            <option value="ドイツ語">ドイツ語</option>
+          </select>
+          翻訳したいテキスト<input id="base_text" type="text"></input><br/>
+        　<label>翻訳後の言語:
+         <select name="country" id="result_country">
+            <option value="英語">英語</option>
+            <option value="日本語">日本語</option>
+            <option value="フランス語">フランス語</option>
+            <option value="ドイツ語">ドイツ語</option>
+          </select>
+          <button id="submit_text">翻訳</button><br/>
+        </div>
+        <div>
+          <textarea id="result" class="log-view-area"></textarea>
+        </div>
+
+        <script type="text/javascript" src="./eel.js"></script>
+        <script>
+            submit_text.addEventListener('click', () => {
+              if (!base_text.value.match(/\S/g)){
+                alert("翻訳したいテキストを入力してください。");
+                }
+              
+              eel.text_translate(base_text.value, base_country.value, result_country.value)
+            })
+            eel.expose(view_result)
+            function view_result(text){
+              result.value += text + "\r"
+            }
+        </script>
+    </body>
+</html>
